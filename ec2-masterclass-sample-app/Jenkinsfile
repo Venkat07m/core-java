@@ -1,15 +1,17 @@
 node {
-     
-        stage('Checkout') {
-            git credentialsId: 'job1', url: 'https://github.com/Venkat07m/core-java.git', CredentialsID: 'github', branch: 'master'
-        }
-        stage('Mvn Build') {
-            def mvnHome = tool name: 'M2_HOME', type: 'maven'
-            sh "${mvnHome}/bin/mvn clean package"
 
-            def pom = readMavenPom file:'ec2-masterclass-sample-app/pom.xml'
+    withMaven(maven:'maven') {
+
+        stage('Checkout') {
+            git url: 'https://github.com/Venkat07m/core-java.git', CredentialsID: 'job1', branch: 'master'
+        }
+
+        stage('Build') {
+            sh 'mvn clean install'
+
+            def pom = readMavenPom file:'pom.xml'
             print pom.version
             env.version = pom.version
         }
-   
+
 }
