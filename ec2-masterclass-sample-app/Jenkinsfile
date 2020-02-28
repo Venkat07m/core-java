@@ -1,6 +1,6 @@
 node {
         stage('Checkout') {
-            git credentialsId: 'job1', url: 'https://github.com/Venkat07m/sample-java'
+            git credentialsId: 'job1', url: 'https://github.com/Venkat07m/core-java.git'
         }
         stage('MVN Package'){
            def mvnHome = tool name: 'M2_HOME', type: 'maven'
