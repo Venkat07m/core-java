@@ -7,5 +7,6 @@ HEALTHCHECK --interval=5s \
             CMD curl -f http://127.0.0.1:4567 || exit 1
 
 RUN usermod -a -G docker jenkins
+USER jenkins
 
 EXPOSE 4567
