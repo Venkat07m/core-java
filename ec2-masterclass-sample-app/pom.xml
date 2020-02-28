@@ -59,7 +59,7 @@
 					</execution>
 				</executions>
 				<configuration>
-					<repository>sivaram/${project.name}</repository>
+					<repository>venkat07m/microservices</repository>
 					<tag>${project.version}</tag>
 					<skipDockerInfo>true</skipDockerInfo>
 				</configuration>
