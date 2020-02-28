@@ -1,4 +1,5 @@
 node {
+     withMaven(maven:'maven') {   
         stage('Checkout') {
             git credentialsId: 'job1', url: 'https://github.com/Venkat07m/core-java.git', CredentialsID: 'github', branch: 'master'
         }
@@ -10,4 +11,5 @@ node {
             print pom.version
             env.version = pom.version
         }
+     }        
 }
