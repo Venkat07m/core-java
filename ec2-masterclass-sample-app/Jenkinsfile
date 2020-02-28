@@ -1,9 +1,9 @@
 node {
-     withMaven(maven:'maven') {   
+     
         stage('Checkout') {
             git credentialsId: 'job1', url: 'https://github.com/Venkat07m/core-java.git', CredentialsID: 'github', branch: 'master'
         }
-        stage('Build') {
+        stage('Mvn Build') {
             def mvnHome = tool name: 'M2_HOME', type: 'maven'
             sh "${mvnHome}/bin/mvn clean package"
 
@@ -11,5 +11,5 @@ node {
             print pom.version
             env.version = pom.version
         }
-     }        
+   
 }
