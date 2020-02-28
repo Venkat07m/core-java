@@ -6,7 +6,8 @@
 
     <groupId>com.github.simplesteph.udemy</groupId>
     <artifactId>ec2-masterclass-sample-app</artifactId>
-    <version>1.0</version>
+    <version>0.0.1-SNAPSHOT</version>    
+    <name>ec2-masterclass-sample-app</name>
 
     <dependencies>
         <dependency>
@@ -43,6 +44,26 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+            <!-- Docker -->
+            <plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>dockerfile-maven-plugin</artifactId>
+				<version>1.4.10</version>
+				<executions>
+					<execution>
+						<id>default</id>
+						<goals>
+							<goal>build</goal>
+							<goal>push</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<repository>sivaram/${project.name}</repository>
+					<tag>${project.version}</tag>
+					<skipDockerInfo>true</skipDockerInfo>
+				</configuration>
+			</plugin>
 
             <!--package as one fat jar-->
             <plugin>
