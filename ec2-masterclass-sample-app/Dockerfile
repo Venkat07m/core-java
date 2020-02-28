@@ -6,8 +6,4 @@ HEALTHCHECK --interval=5s \
             --timeout=5s \
             CMD curl -f http://127.0.0.1:4567 || exit 1
 
-RUN usermod -a -G docker jenkins
-USER jenkins
-chmod 777 /var/run/docker.sock
-
 EXPOSE 4567
