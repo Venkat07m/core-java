@@ -3,9 +3,7 @@ node {
             git credentialsId: 'job1', url: 'https://github.com/Venkat07m/sample-java'
         }
         stage('Build') {
-            sh 'mvn clean install'
-            def pom = readMavenPom file:'pom.xml'
-            print pom.version
-            env.version = pom.version
+           def mvnHome = tool name: 'M2_HOME', type: 'maven'
+           sh "${mvnHome}/bin/mvn clean package"
         }
 }
