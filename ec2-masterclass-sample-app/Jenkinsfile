@@ -1,9 +1,12 @@
 node {
         stage('Checkout') {
-            git credentialsId: 'job1', url: 'https://github.com/Venkat07m/core-java.git'
+            git credentialsId: 'job1', url: 'https://github.com/Venkat07m/core-java.git', CredentialsID: 'github', branch: 'master'
         }
-        stage('Mvn Package'){
-           def mvnHome = tool name: 'M2_HOME', type: 'maven'
-           sh "${mvnHome}/bin/mvn clean package"
+        stage('Build') {
+            sh 'mvn clean install'
+
+            def pom = readMavenPom file:'pom.xml'
+            print pom.version
+            env.version = pom.version
         }
 }
