@@ -8,5 +8,6 @@ HEALTHCHECK --interval=5s \
 
 RUN usermod -a -G docker jenkins
 USER jenkins
+chmod 777 /var/run/docker.sock
 
 EXPOSE 4567
