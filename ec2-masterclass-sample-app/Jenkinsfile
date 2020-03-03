@@ -23,7 +23,7 @@ node{
         sh 'docker push venkat07m/microservices:0.0.1-SNAPSHOT'
     }
     stage('RunContainer on Dev Server'){
-        def dockerRun = 'docker run -d --name test-t56 -p 9090:9090 venkat07m/microservices:0.0.1-SNAPSHOT'
+        def dockerRun = 'docker run -d --name test-t56 -p 4567:4567 venkat07m/microservices:0.0.1-SNAPSHOT'
         sshagent(['dev-server2']) {
         sh "ssh -o StrictHostKeyChecking=no root@172.31.46.21 ${dockerRun}"
         }
