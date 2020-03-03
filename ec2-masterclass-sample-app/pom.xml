@@ -46,7 +46,7 @@
                 </configuration>
             </plugin>
             <!-- Docker -->
-       <!--     <plugin>
+         <plugin>
 				<groupId>com.spotify</groupId>
 				<artifactId>dockerfile-maven-plugin</artifactId>
 				<version>1.4.10</version>
@@ -60,11 +60,11 @@
 					</execution>
 				</executions>
 				<configuration>
-					<repository>sivaram/${project.name}</repository>
+					<repository>core-appl/${project.name}</repository>
 					<tag>${project.version}</tag>
 					<skipDockerInfo>true</skipDockerInfo>
 				</configuration>
-			</plugin> -->
+			</plugin>
 
             <!--package as one fat jar-->
             <plugin>
