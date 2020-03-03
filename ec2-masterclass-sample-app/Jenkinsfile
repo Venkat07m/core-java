@@ -1,0 +1,31 @@
+node{
+     
+    stage('Scm Checkout'){
+        git credentialsId: 'docker_hub', url: 'https://github.com/Venkat07m/spring-boot-rest.git'
+    }
+    stage('Mvn Build') {
+            
+            dir('/var/lib/jenkins/workspace/Docker_Job/hello-world') {
+            def mvnHome = tool name: 'M2_HOME', type: 'maven'
+            sh "${mvnHome}/bin/mvn clean package"
+            
+            def pom = readMavenPom file:'pom.xml'
+            print pom.version
+            env.version = pom.version
+            }
+        }
+    stage('Build Docker Image'){
+        dir('/var/lib/jenkins/workspace/Docker_Job/hello-world') {
+        sh 'docker build -t venkat07m/microservices:0.0.1-SNAPSHOT .'
+        }
+    }    
+    stage('Push Docker Image'){
+        sh 'docker push venkat07m/microservices:0.0.1-SNAPSHOT'
+    }
+    stage('RunContainer on Dev Server'){
+        def dockerRun = 'docker run -d --name test-t56 -p 9090:9090 venkat07m/microservices:0.0.1-SNAPSHOT'
+        sshagent(['dev-server2']) {
+        sh "ssh -o StrictHostKeyChecking=no root@172.31.46.21 ${dockerRun}"
+        }
+    }
+}
