@@ -5,7 +5,7 @@ node{
     }
     stage('Mvn Build') {
             
-            dir('/var/lib/jenkins/workspace/Docker_Job/hello-world') {
+            dir('/var/lib/jenkins/workspace/Docker-with-Jenkins-Pipeline/ec2-masterclass-sample-app') {
             def mvnHome = tool name: 'M2_HOME', type: 'maven'
             sh "${mvnHome}/bin/mvn clean package"
             
@@ -15,17 +15,18 @@ node{
             }
         }
     stage('Build Docker Image'){
-        dir('/var/lib/jenkins/workspace/Docker_Job/hello-world') {
-        sh 'docker build -t venkat07m/microservices:9.1 .'
+        dir('/var/lib/jenkins/workspace/Docker-with-Jenkins-Pipeline/ec2-masterclass-sample-app') {
+        sh 'docker build -t venkat07m/microservices:9.0 .'
         }
     }    
     stage('Push Docker Image'){
-        sh 'docker push venkat07m/microservices:9.1'
+        sh 'docker push venkat07m/microservices:9.0'
     }
     stage('RunContainer on Dev Server'){
-        def dockerRun = 'docker run -d --name test-t536 -p 4567:4567 venkat07m/microservices:9.1'
+        def dockerRun = 'docker run -d --name test-t256 -p 4567:4567 venkat07m/microservices:9.0'
         sshagent(['dev-server2']) {
         sh "ssh -o StrictHostKeyChecking=no root@172.31.46.21 ${dockerRun}"
         }
     }
+    
 }
