@@ -1,7 +1,7 @@
 node{
      
     stage('Scm Checkout'){
-        git credentialsId: 'docker_hub', url: 'https://github.com/Venkat07m/spring-boot-rest.git'
+        git credentialsId: 'docker_hub', url: 'https://github.com/Venkat07m/core-java.git'
     }
     stage('Mvn Build') {
             
