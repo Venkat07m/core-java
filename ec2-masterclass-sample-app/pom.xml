@@ -6,7 +6,7 @@
 
     <groupId>com.github.simplesteph.udemy</groupId>
     <artifactId>ec2-masterclass-sample-app</artifactId>
-    <version>9.0</version>    
+    <version>0.0.2-SNAPSHOT</version>    
     <packaging>jar</packaging>
     <name>ec2-masterclass-sample-app</name>
 
@@ -67,7 +67,7 @@
 			</plugin>
 
             <!--package as one fat jar-->
-            <plugin>
+          <!--   <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <version>3.1.0</version>
@@ -91,7 +91,7 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin> -->
         </plugins>
     </build>
 
