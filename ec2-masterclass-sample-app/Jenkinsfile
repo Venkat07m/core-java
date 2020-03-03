@@ -16,14 +16,14 @@ node{
         }
     stage('Build Docker Image'){
         dir('/var/lib/jenkins/workspace/Docker_Job/hello-world') {
-        sh 'docker build -t venkat07m/microservices:0.0.1-SNAPSHOT .'
+        sh 'docker build -t venkat07m/microservices:9.1 .'
         }
     }    
     stage('Push Docker Image'){
-        sh 'docker push venkat07m/microservices:0.0.1-SNAPSHOT'
+        sh 'docker push venkat07m/microservices:9.1'
     }
     stage('RunContainer on Dev Server'){
-        def dockerRun = 'docker run -d --name test-t56 -p 4567:4567 venkat07m/microservices:0.0.1-SNAPSHOT'
+        def dockerRun = 'docker run -d --name test-t536 -p 4567:4567 venkat07m/microservices:9.1'
         sshagent(['dev-server2']) {
         sh "ssh -o StrictHostKeyChecking=no root@172.31.46.21 ${dockerRun}"
         }
